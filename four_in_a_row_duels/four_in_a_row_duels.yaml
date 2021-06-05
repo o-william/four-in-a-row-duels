@@ -1,0 +1,13 @@
+timeout: 100 #ms
+refresh: 300 #ms
+server_timeout: 20000 #ms
+
+turn_based: True
+
+structs:
+    Cell: [int row, int column, int player] # 0 for player_1, 1 for player_2
+    
+init_display: [int rows, int columns]
+input: [int played_column]
+feedback: [Cell played_cells()]
+display: [Cell last_played_cell]
