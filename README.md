@@ -1,7 +1,7 @@
 # four-in-a-row-duels
 This is a C++ and PyGame Implementation of the classic "ConnectFour" game.
 
-It is part of a series of projects which use the duels package developed by Professor Olivier Kermogant
+It is part of a series of projects which use the duels package developed by Professor Olivier Kermogant:
 https://github.com/oKermorgant/duels
 
 The duels package uses C++ and Python (PyGame) to create a turn-based game which can be played by multiple "clients". These clients are simply C++ programs which are written to "behave" as players playing the game, with an emphasis on AI techniques.
