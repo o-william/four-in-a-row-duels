@@ -25,31 +25,17 @@ FourInARowDuelsMechanics::FourInARowDuelsMechanics() {
 
 void FourInARowDuelsMechanics::buildPlayerFeedback(Feedback &feedback, [[maybe_unused]] bool player_1_turn)
 {
+    // Feedback is a vector of type "Cell" called played_cells.
     // This does not take into account the situation where a player object skips its turn
     if (total_moves == 0){
         // no one has played yet
     }
     else{
-        // fill the feedback with the played cells
-        Cell new_cell;
-        for (int i = 0; i < ROWS; i++){
-            for (int j = 0; j < COLUMNS; j++){
-                if (game_grid.getCell(i, j) != EMPTY_TOKEN){
-                    new_cell.row = i;
-                    new_cell.column = j;
-
-                    if (game_grid.getCell(i, j) == PLAYER_1_TOKEN){
-                        new_cell.player = 0;
-                    }
-                    else {
-                        new_cell.player = 1;
-                    }
-                    feedback.played_cells.push_back(new_cell);
-                }
-            }
-
-        }
+        // append the current player's feedback with the last played cell of the opponent using display_msg.last_played_cell
+        // this sends the opponent's played cells to the current player as feedback
+        feedback.played_cells.push_back(display_msg.last_played_cell);
     }
+    //std::cout<<"Total cells in feedback: "<<feedback.played_cells.size()<<std::endl;
 }
 
 
