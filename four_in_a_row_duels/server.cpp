@@ -67,9 +67,9 @@ int main(int argc, char** argv)
             game_io.endsWith(Result::P2_WINS);
         }
     }
-//    if (mechanics.checkDraw()){
-//        game_io.registerDraw();
-//    }
+   if (mechanics.checkDraw()){
+       game_io.registerDraw();
+   }
 
     // TODO check if any regular winner after this turn
     //if(...)
