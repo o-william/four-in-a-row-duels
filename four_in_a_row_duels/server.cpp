@@ -35,9 +35,12 @@ int main(int argc, char** argv)
   // TODO prepare game state / init message (for display)
   FourInARowDuelsMechanics mechanics;
   InitDisplay init = mechanics.initGame();
+  init.rows = 6;
+  init.columns = 8;
 
   // inform displays and get players (no multithread by default for simultaneous games)
   const auto [player1, player2] = game_io.initPlayers<FourInARowDuelsAI>(argc, argv, init, 0, 1, false); {}
+
 
   bool player1_turn(true);
   while(game_io.running())
@@ -67,9 +70,9 @@ int main(int argc, char** argv)
             game_io.endsWith(Result::P2_WINS);
         }
     }
-   if (mechanics.checkDraw()){
-       game_io.registerDraw();
-   }
+    if (mechanics.checkDraw()){
+        game_io.registerDraw();
+    }
 
     // TODO check if any regular winner after this turn
     //if(...)
