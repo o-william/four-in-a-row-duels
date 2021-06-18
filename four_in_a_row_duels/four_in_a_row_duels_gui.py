@@ -25,7 +25,13 @@ init_msg = game.get_init()
 
 # add other imports here /(e.g. pygame)
 import pygame
-import time
+
+# import keys to quit
+from pygame.locals import(
+    KEYDOWN,
+    K_ESCAPE,
+    QUIT,
+)
 
 # Define constants for the rows and columns sent from the C++
 ROWS = init_msg.rows
@@ -198,10 +204,13 @@ player_1_text_size = (player_1_text.get_width(), player_1_text.get_height())
 player_2_text = FONT_1.render(p2_display, True, BLACK)
 player_2_text_size = (player_2_text.get_width(), player_2_text.get_height())
 
-# Place Fonts in the blocks
+# Place Fonts and token colors in the blocks
+token_symbol_radius = cells[0].width//4 - MARGIN
 player_1_title_block.surf.blit(player_1_text, (player_1_title_block.width//2 - player_1_text_size[0]//2, player_1_title_block.height//2 - player_1_text_size[1]//2))
+pygame.draw.circle(player_1_title_block.surf, TOKEN_1_COLOR, (player_1_title_block.width//2, player_1_title_block.coordinates[1] + player_1_title_block.height - (token_symbol_radius*2)), token_symbol_radius)
 
 player_2_title_block.surf.blit(player_2_text, (player_2_title_block.width//2 - player_2_text_size[0]//2, player_2_title_block.height//2 - player_2_text_size[1]//2))
+pygame.draw.circle(player_2_title_block.surf, TOKEN_2_COLOR, (player_2_title_block.width//2, player_2_title_block.coordinates[1] + player_2_title_block.height - (token_symbol_radius*2)), token_symbol_radius)
 
 # Create sprite groups
 title_sprites = pygame.sprite.Group()
@@ -234,7 +243,6 @@ while True:
     pygame.display.flip()
     
     if game.winner:
-
         if game.winner == 1 or game.winner == 2:
             center_display = "Winner: "+game.winner_name(init_msg)
         elif game.winner == 3:
@@ -242,12 +250,27 @@ while True:
         center_text = FONT_1.render(center_display, True, BLACK)
         center_text_size = (center_text.get_width(), center_text.get_height())
         center_title_block.surf.blit(center_text, (center_title_block.width//2 - center_text_size[0]//2, center_title_block.height//2 - center_text_size[1]//2))
+
         title_sprites.add(center_title_block)
         all_sprites.add(center_title_block)
 
-        refreshDisplay(screen, all_sprites)
+        if game.winner != 3:
+            if game.winner == 1:
+                WINNER_COLOR = TOKEN_1_COLOR
+            elif game.winner == 2:
+                WINNER_COLOR = TOKEN_2_COLOR
+            pygame.draw.circle(center_title_block.surf, WINNER_COLOR, (center_title_block.width//2, center_title_block.coordinates[1] + center_title_block.height - (token_symbol_radius*2)), token_symbol_radius)
 
-        time.sleep(5)
+        screen_hold = True
+        while screen_hold:
+            for event in pygame.event.get():
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        screen_hold = False
+                elif event.type == QUIT:
+                    screen_hold = False
+
+            refreshDisplay(screen, all_sprites)
         break
     
     # update display from msg fields

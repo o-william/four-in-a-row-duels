@@ -58,11 +58,11 @@ void FourInARowDuelsMechanics::play(int column_in, bool player_1_turn){
             new_cell.column = column_in;
             display_msg.last_played_cell = new_cell;
             if (player_1_turn){
-                display_msg.last_played_cell.player = 1;
+                display_msg.last_played_cell.player = 0;
                 // cell was played by player 1
             }
             else{
-                display_msg.last_played_cell.player = 2;
+                display_msg.last_played_cell.player = 1;
                 // cell was played by player 2
             }
         }

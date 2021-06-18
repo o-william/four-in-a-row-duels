@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(four_in_a_row_duels CXX)
+
+# will be changed when creating package - used for local testing without installation
+SET(DUELS_ROOT "/opt/duels" CACHE STRING "Path to duels installation folder")
+add_definitions(-DGAME_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/..")
+include_directories(../include) # local dev
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_BUILD_TYPE Debug)
+
+# find ZeroMQ
+find_path ( ZMQ_INCLUDE_DIR zmq.h )
+find_library ( ZMQ_LIBRARY NAMES zmq )
+include_directories(${DUELS_ROOT}/include ${ZMQ_INCLUDE_DIR})
+add_definitions(-DDUELS_BIN_PATH="${DUELS_ROOT}/bin")
+
+# add whatever additional includes / libs needed for your AI
+
+add_executable(four_in_a_row_duels
+    four_in_a_row_duels.cpp
+    #/server.cpp
+    #/src/four_in_a_row_duels_ai.cpp
+    #/src/mechanics.cpp
+    #/src/game_grid.cpp
+    )
+target_link_libraries(four_in_a_row_duels ${ZMQ_LIBRARY})

@@ -4,6 +4,7 @@
 #include <duels/player.h>
 #include <duels/four_in_a_row_duels/msg.h>
 #include <stdlib.h> // random number generation
+#include <time.h>
 
 namespace duels {
 namespace four_in_a_row_duels {
@@ -19,7 +20,8 @@ public:
 private:
   int difficulty = 1;
 
-  //const int SEED = 5;
+  const int SEED = 1;
+
   int ROWS = 6; // edit: we have to find a way to pass the row values from the grid generated in the mechanics file
   int COLUMNS = 8; // edit: we have to find a way to pass the column values from the grid generated in the mechanics file
 
@@ -34,6 +36,11 @@ private:
   void initializeAI();
   void initializeGrids();
   void updateGrids();
+
+  void aiLevelOne(int &played_column);
+  void aiLevelTwo(int &played_column);
+  void aiLevelThree(int &played_column);
+  void aiLevelFour(int &played_column);
 
 };
 }

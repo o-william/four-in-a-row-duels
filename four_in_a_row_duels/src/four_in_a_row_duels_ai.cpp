@@ -45,11 +45,31 @@ void FourInARowDuelsAI::updateInput(){
     }
 
     else{
-        // call the appropriate AI using switch-case
-        do{
-            played_column = column_pool[rand() % column_pool.size()];
+        // update the column pool
+        int column_pool_size = column_pool.size();
+        for (int i=0; i<column_pool_size; i++){
+            if (total_grid[0][column_pool[i]] == true){
+                column_pool.erase(column_pool.begin()+i);
+                break;
+            }
         }
-        while(total_grid[0][played_column] == true);
+        // call the appropriate AI using switch-case. For each one, return the played column
+        switch(difficulty){
+        case 1:
+            aiLevelOne(played_column);
+            break;
+        case 2:
+            aiLevelTwo(played_column);
+            break;
+        case 3:
+            aiLevelThree(played_column);
+            break;
+        case 4:
+            aiLevelFour(played_column);
+            break;
+        default:
+            aiLevelOne(played_column);
+        }
 
         /* calculate the corresponding row in which the column will be filled
          * note: we are not using the computation from the mechanics, we are computing independently
@@ -95,4 +115,43 @@ void FourInARowDuelsAI::updateGrids(){
     // update opponent grid with the last vector in the feedback
     opponent_grid[feedback.played_cells[played_cells-1].row][feedback.played_cells[played_cells-1].column] = true;
     total_grid[feedback.played_cells[played_cells-1].row][feedback.played_cells[played_cells-1].column] = true;
+}
+
+
+
+
+/* AI Levels.
+ * They all return an integer value: between 0 and the number of columns in the game.
+*/
+
+
+void FourInARowDuelsAI::aiLevelOne(int &played_column){
+    /* Uses the rand() function from stdlib.h
+     * The sequence generated is not really random. For the specified columns, it generates the exact same sequence every time.
+     * This is useful for the client, in order to be able to test their ai, as they can absolutely predict the sequence of this aiLevel
+    */
+    played_column = column_pool[rand() % column_pool.size()];
+
+}
+
+
+void FourInARowDuelsAI::aiLevelTwo(int &played_column){
+    /* Uses the rand() function from stdlib.h and srand() in addition. The seed is an integer, initialized at instantiation.
+    * Again this results in a sequence which is not really random. This gives the client the opportunitiy to develop their ai with behaviors which they can anticipate
+    */
+    srand(SEED);
+    played_column = column_pool[rand() % column_pool.size()];
+}
+
+void FourInARowDuelsAI::aiLevelThree(int &played_column){
+
+    /* Uses the rand() function from stdlib.h and srand() in addition. The seed is a time object, created on every call to this function.
+     * This is random (albeit predictable)
+    */
+    srand(time(0));
+    played_column = column_pool[rand() % column_pool.size()];
+}
+
+void FourInARowDuelsAI::aiLevelFour(int &played_column){
+    played_column = 0;
 }
