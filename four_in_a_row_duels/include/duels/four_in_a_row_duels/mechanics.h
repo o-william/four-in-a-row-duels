@@ -34,6 +34,8 @@ private:
   int total_moves;
   bool game_won;
 
+  //Cell last_played_cell;
+
   bool withinBounds(int column_in) const;
   bool columnFilled(int column_in) const;
   bool cellFilled(int row_in, int column_in) const;

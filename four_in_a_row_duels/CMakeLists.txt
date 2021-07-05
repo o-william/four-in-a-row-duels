@@ -25,6 +25,8 @@ add_definitions(-DDUELS_SERVER)
 add_executable(four_in_a_row_duels_server
     server.cpp
     src/four_in_a_row_duels_ai.cpp
+    src/ai_level_two.cpp
+    src/ai_level_three.cpp
     src/mechanics.cpp
     src/game_grid.cpp)
 target_link_libraries(four_in_a_row_duels_server ${CMAKE_THREAD_LIBS_INIT} ${ZMQ_LIBRARY})

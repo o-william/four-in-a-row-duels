@@ -27,6 +27,9 @@ using GameIO = duels::Server<InitDisplay, Input, Feedback, Display>;
 
 int main(int argc, char** argv)
 {
+  const int ROWS = 6;
+  const int COLUMNS = 8;
+
   GameIO game_io("four_in_a_row_duels", Refresh(300), Timeout(100));
   
   // simulation time
@@ -35,11 +38,12 @@ int main(int argc, char** argv)
   // TODO prepare game state / init message (for display)
   FourInARowDuelsMechanics mechanics;
   InitDisplay init = mechanics.initGame();
-  init.rows = 6;
-  init.columns = 8;
+
+  init.rows = ROWS;
+  init.columns = COLUMNS;
 
   // inform displays and get players (no multithread by default for simultaneous games)
-  const auto [player1, player2] = game_io.initPlayers<FourInARowDuelsAI>(argc, argv, init, 0, 1, false); {}
+  const auto [player1, player2] = game_io.initPlayers<FourInARowDuelsAI>(argc, argv, init, 2, 3, false); {}
 
 
   bool player1_turn(true);
