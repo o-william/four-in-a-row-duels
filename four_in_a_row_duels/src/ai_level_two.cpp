@@ -62,12 +62,12 @@ using namespace duels::four_in_a_row_duels;
 
 
 void FourInARowDuelsAI::aiLevelTwo(int &played_column){
-    std::cout<<"candidate_found: ";
+    //std::cout<<"candidate_found: ";
     if (candidate_found){
-        std::cout<<"true"<<std::endl;
+        //std::cout<<"true"<<std::endl;
     }
     else{
-        std::cout<<"false"<<std::endl;
+        //std::cout<<"false"<<std::endl;
     }
     do{
         if (candidate_found){

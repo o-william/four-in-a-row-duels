@@ -36,7 +36,7 @@ void FourInARowDuelsAI::aiLevelThree(int &played_column){
                 if (total_grid[getTopmostRow(play_next)+1][play_next]){
                     played_column = play_next;
                     play_next = -1;
-                    std::cout<<"opponent's column to block: "<<played_column<<std::endl;
+                    //std::cout<<"opponent's column to block: "<<played_column<<std::endl;
                 }
                 else{
                     aiLevelTwo(played_column);
@@ -45,7 +45,7 @@ void FourInARowDuelsAI::aiLevelThree(int &played_column){
             else{
                 played_column = play_next;
                 play_next = -1;
-                std::cout<<"opponent's column to block: "<<played_column<<std::endl;
+                //std::cout<<"opponent's column to block: "<<played_column<<std::endl;
             }
         }
 
@@ -109,7 +109,7 @@ void FourInARowDuelsAI::aiLevelThree(int &played_column){
                     if (total_grid[getTopmostRow(play_next)+1][play_next]){
                         played_column = play_next;
                         play_next = -1;
-                        std::cout<<"opponent's column to block: "<<played_column<<std::endl;
+                        //std::cout<<"opponent's column to block: "<<played_column<<std::endl;
                     }
                     else{
                         aiLevelTwo(played_column);
@@ -118,7 +118,7 @@ void FourInARowDuelsAI::aiLevelThree(int &played_column){
                 else{
                     played_column = play_next;
                     play_next = -1;
-                    std::cout<<"opponent's column to block: "<<played_column<<std::endl;
+                    //std::cout<<"opponent's column to block: "<<played_column<<std::endl;
                 }
 
             }
