@@ -73,9 +73,9 @@ void FourInARowDuelsMechanics::play(int column_in, bool player_1_turn){
     else{
         // display an appropriate error: INPUT IS OUT OF BOUNDS
     }
-    std::cout<<"Total Moves: "<<total_moves<<std::endl;
-    game_grid.printGrid();
-    std::cout<<std::endl;
+    //std::cout<<"Total Moves: "<<total_moves<<std::endl;
+    //game_grid.printGrid();
+    //std::cout<<std::endl;
 }
 
 

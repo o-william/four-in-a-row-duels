@@ -183,7 +183,7 @@ bool FourInARowDuelsAI::findCandidate(){
 
             direction = orientations[orientation_it].getDirection();
 
-            std::cout<<"candiate found. row: "<<root_cell[0]<<", column: "<<root_cell[1]<<", orientation: "<<orientations[orientation_it].getName()<<", direction: "<<orientations[orientation_it].getDirection()<<std::endl;
+            //std::cout<<"candiate found. row: "<<root_cell[0]<<", column: "<<root_cell[1]<<", orientation: "<<orientations[orientation_it].getName()<<", direction: "<<orientations[orientation_it].getDirection()<<std::endl;
             return true;
         }
         else{
@@ -195,7 +195,7 @@ bool FourInARowDuelsAI::findCandidate(){
         if (probe(root_cell[0], root_cell[1], orientations[orientation_it])==true){
             candidate_found = true;
             direction = orientations[orientation_it].getDirection();
-            std::cout<<"candiate found. row: "<<root_cell[0]<<", column: "<<root_cell[1]<<", orientation: "<<orientations[orientation_it].getName()<<", direction: "<<orientations[orientation_it].getDirection()<<std::endl;
+            //std::cout<<"candiate found. row: "<<root_cell[0]<<", column: "<<root_cell[1]<<", orientation: "<<orientations[orientation_it].getName()<<", direction: "<<orientations[orientation_it].getDirection()<<std::endl;
             return true;
         }
         else{
@@ -401,7 +401,7 @@ bool FourInARowDuelsAI::probe(int &row, int &column, Orientation &orientation){
 
 void FourInARowDuelsAI::horizontalFill(int &played_column){
     if (horizontalProbe(root_cell[0], root_cell[1], direction)){
-        std::cout<<"root_cell[0]: "<<root_cell[0]<<", root_cell[1]: "<<root_cell[1]<<", direction: "<<direction<<std::endl;
+        //std::cout<<"root_cell[0]: "<<root_cell[0]<<", root_cell[1]: "<<root_cell[1]<<", direction: "<<direction<<std::endl;
         if (direction == 1){
             for (int i=0; i < IN_A_ROW; i++){
                 if (!total_grid[root_cell[0]][root_cell[1]+i]){
@@ -425,13 +425,13 @@ void FourInARowDuelsAI::horizontalFill(int &played_column){
         aiLevelTwo(played_column);
 //        findCandidate();
     }
-    std::cout<<"played_column: "<<played_column<<std::endl;
+    //std::cout<<"played_column: "<<played_column<<std::endl;
 }
 
 
 void FourInARowDuelsAI::verticalFill(int &played_column){
     if (verticalProbe(root_cell[0], root_cell[1], direction)){
-        std::cout<<"root_cell[0]: "<<root_cell[0]<<", root_cell[1]: "<<root_cell[1]<<", direction: "<<direction<<std::endl;
+        //std::cout<<"root_cell[0]: "<<root_cell[0]<<", root_cell[1]: "<<root_cell[1]<<", direction: "<<direction<<std::endl;
         if (direction == 1){
             // you cannot fill downwards
         }
@@ -450,13 +450,13 @@ void FourInARowDuelsAI::verticalFill(int &played_column){
         aiLevelTwo(played_column);
 //        findCandidate();
     }
-    std::cout<<"played_column: "<<played_column<<std::endl;
+    //std::cout<<"played_column: "<<played_column<<std::endl;
 }
 
 
 void FourInARowDuelsAI::diagonalFill(int &played_column){
     if (diagonalProbe(root_cell[0], root_cell[1], direction)){
-        std::cout<<"root_cell[0]: "<<root_cell[0]<<", root_cell[1]: "<<root_cell[1]<<", direction: "<<direction<<std::endl;
+        //std::cout<<"root_cell[0]: "<<root_cell[0]<<", root_cell[1]: "<<root_cell[1]<<", direction: "<<direction<<std::endl;
         if (direction == 1){
             for (int i=0; i < IN_A_ROW; i++){
                 if (!total_grid[root_cell[0]+i][root_cell[1]+i]){
@@ -480,13 +480,13 @@ void FourInARowDuelsAI::diagonalFill(int &played_column){
         aiLevelTwo(played_column);
 //        findCandidate();
     }
-    std::cout<<"played_column: "<<played_column<<std::endl;
+    //std::cout<<"played_column: "<<played_column<<std::endl;
 }
 
 
 void FourInARowDuelsAI::antiDiagonalFill(int &played_column){
     if (antiDiagonalProbe(root_cell[0], root_cell[1], direction)){
-        std::cout<<"root_cell[0]: "<<root_cell[0]<<", root_cell[1]: "<<root_cell[1]<<", direction: "<<direction<<std::endl;
+        //std::cout<<"root_cell[0]: "<<root_cell[0]<<", root_cell[1]: "<<root_cell[1]<<", direction: "<<direction<<std::endl;
         if (direction == 1){
             for (int i=0; i < IN_A_ROW; i++){
                 if (!total_grid[root_cell[0]-i][root_cell[1]+i]){
@@ -510,7 +510,7 @@ void FourInARowDuelsAI::antiDiagonalFill(int &played_column){
         aiLevelTwo(played_column);
 //        findCandidate();
     }
-    std::cout<<"played_column: "<<played_column<<std::endl;
+    //std::cout<<"played_column: "<<played_column<<std::endl;
 }
 
 
